@@ -1,0 +1,69 @@
+{
+  "name": "mundoalem.github.io",
+  "postAttachCommand": "./.devcontainer/hooks/post_attach.sh",
+  "remoteUser": "dev",
+
+  "build": {
+    "dockerfile": "../container/devcontainer/Dockerfile",
+    "context": ".."
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",
+        "bradlc.vscode-tailwindcss",
+        "DavidAnson.vscode-markdownlint",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "esbenp.prettier-vscode",
+        "EditorConfig.EditorConfig",
+        "ms-azuretools.vscode-docker",
+        "unifiedjs.vscode-mdx"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.rulers": [80, 120],
+        "editor.quickSuggestions": {
+          "strings": "on"
+        },
+        "editor.suggest.insertMode": "replace",
+        "files.associations": {
+          "*.css": "tailwindcss"
+        },
+        "git.enableCommitSigning": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/usr/bin/bash"
+          }
+        },
+        "terminal.integrated.shellIntegration.decorationsEnabled": "never",
+        "[astro]": {
+          "editor.defaultFormatter": "astro-build.astro-vscode"
+        },
+        "[markdown]": {
+          "diffEditor.ignoreTrimWhitespace": false,
+          "editor.codeActionsOnSave": {
+            "source.fixAll.markdownlint": "always"
+          },
+          "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+          "editor.unicodeHighlight.ambiguousCharacters": false,
+          "editor.unicodeHighlight.invisibleCharacters": false,
+          "editor.wordWrap": "on",
+          "editor.quickSuggestions": {
+            "comments": "on",
+            "strings": "on",
+            "other": "on"
+          }
+        }
+      }
+    }
+  },
+
+  "mounts": [
+    "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock",
+    "type=bind,consistency=cached,source=${localWorkspaceFolder}/container/devcontainer/volumes/history,target=/home/dev/.history"
+  ]
+}
